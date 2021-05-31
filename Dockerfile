@@ -1,14 +1,27 @@
-#Set Task
-#Давайте так: начните с базового образа Томкат.
-#FROM Tomcat
-#Дальше - установите maven, default-jdk, git
-#Склонируйте репозиторий в контейнер
-#Соберите maven-ом и подложите артефакт Томкату.
-FROM Tomcat:latest 
-RUN apt-get update
-RUN apt-get maven -y
-RUN apt-get default-jdk -y
-RUN apt-get git -y
+FROM tomcat:latest as tomcats
+
+
+
+
+# WORKDIR /root/
+# RUN git clone https://github.com/tarekkhoury/mywebapplication.git
+
+
+
+
+RUN apt-get update && apt-get install -y \
+git \
+default-jdk \
+maven
+
 WORKDIR /root/
 RUN git clone https://github.com/tarekkhoury/mywebapplication.git
+
+
+
+
+
+RUN mvn -f /root/mywebapplication/pom.xml clean package
+COPY /root/mywebapplication/target/mywebapplication.war    /usr/local/tomcat/webapps/mywebapplication.war
 CMD /usr/local/bin/shell.sh ; sleep infinity
+
