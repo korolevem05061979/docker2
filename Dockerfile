@@ -4,4 +4,4 @@
 #Дальше - установите maven, default-jdk, git
 #Склонируйте репозиторий в контейнер
 #Соберите maven-ом и подложите артефакт Томкату.
-FROM Tomcat
+FROM Tomcat as tomcat
