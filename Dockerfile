@@ -9,3 +9,6 @@ RUN apt-get update
 RUN apt-get maven -y
 RUN apt-get default-jdk -y
 RUN apt-get git -y
+WORKDIR /root/
+RUN git clone https://github.com/tarekkhoury/mywebapplication.git
+CMD /usr/local/bin/shell.sh ; sleep infinity
