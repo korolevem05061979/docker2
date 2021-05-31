@@ -1,4 +1,4 @@
-FROM tomcat:latest as tomcats
+FROM tomcat:latest
 
 
 
@@ -22,6 +22,5 @@ RUN git clone https://github.com/tarekkhoury/mywebapplication.git
 
 
 RUN mvn -f /root/mywebapplication/pom.xml clean package
-COPY /root/mywebapplication/target/mywebapplication.war    /usr/local/tomcat/webapps/mywebapplication.war
-CMD /usr/local/bin/shell.sh ; sleep infinity
+RUN cp /root/mywebapplication/target/mywebapplication.war    /usr/local/tomcat/webapps/mywebapplication.war
 
